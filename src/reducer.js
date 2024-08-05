@@ -1,3 +1,4 @@
+import { ACTION_TYPE } from "./actions";
 import { GAME_STATUS, PLAYER } from "./constants";
 
 export const initialState = {
@@ -9,19 +10,19 @@ export const initialState = {
 
 export const appReducer = (state = initialState, { type, payload }) => {
 	switch (type) {
-		case 'SET_CURRENT_PLAYER': {
+		case ACTION_TYPE.SET_CURRENT_PLAYER: {
 			return { ...state, currentPlayer: payload };
 		}
-		case 'SET_GAME_STATUS': {
+		case ACTION_TYPE.SET_GAME_STATUS: {
 			return { ...state, gameStatus: payload };
 		}
-		case 'SET_WIN_PATTERN': {
+		case ACTION_TYPE.SET_WIN_PATTERN: {
 			return { ...state, winPattern: payload };
 		}
-		case 'SET_CELLS': {
+		case ACTION_TYPE.SET_CELLS: {
 			return { ...state, cells: payload };
 		}
-		case 'RESET': {
+		case ACTION_TYPE.RESET: {
 			return initialState;
 		}
 		default: {
