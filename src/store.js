@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export const store = createStore(appReducer);
 
-store.dispatch({type: 'init'});
+store.dispatch({ type: 'init' });
 
 export const useStoreSubscribe = () => {
 	const [state, setState] = useState(store.getState());
