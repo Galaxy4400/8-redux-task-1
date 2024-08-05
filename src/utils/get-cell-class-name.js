@@ -1,13 +1,11 @@
 import css from '../components/field/field.module.scss';
-import { store } from '../store';
+import { PLAYER } from '../constants';
 
-export function getCellClassName(player, cellId) {
-	const { winPattern } = store.getState();
-
+export function getCellClassName(player, cellId, winPattern) {
 	let className = [css['tile']];
 
-	if (player === 1) className.push(css['tile_cross']);
-	if (player === 2) className.push(css['tile_circle']);
+	if (player === PLAYER.CROSS) className.push(css['tile_cross']);
+	if (player === PLAYER.CIRCLE) className.push(css['tile_circle']);
 
 	if (winPattern.some((winCellId) => winCellId === cellId)) {
 		className.push(css['win']);

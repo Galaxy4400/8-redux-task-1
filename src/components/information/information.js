@@ -1,6 +1,9 @@
-import { InformationLayout } from './information-layout';
+import css from './information.module.scss';
 import { getInfoTitle } from '../../utils';
+import { useReduxState } from '../../redux-manager';
 
 export function Information() {
-	return <InformationLayout>{getInfoTitle()}</InformationLayout>;
+	const { gameStatus, currentPlayer } = useReduxState();
+
+	return <div className={css['info']}>{getInfoTitle(gameStatus, currentPlayer)}</div>;
 }

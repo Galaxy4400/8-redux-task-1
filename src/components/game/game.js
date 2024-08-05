@@ -1,10 +1,19 @@
-import { useStoreSubscribe } from '../../store';
-import { GameLayout } from './game-layout';
+import css from './game.module.scss';
+import { Field } from '../field/field';
+import { Information } from '../information/information';
+import { GAME_STATUS } from '../../constants';
+import { useDispatch, useReduxState } from '../../redux-manager';
+import { reset } from '../../actions';
 
 export function Game() {
-	useStoreSubscribe();
+	const { gameStatus } = useReduxState();
+	const dispatch = useDispatch();
 
 	return (
-		<GameLayout/>
+		<div className={css['game']}>
+			<Information />
+			<Field />
+			{gameStatus !== GAME_STATUS.TURN && <button onClick={() => dispatch(reset())}>Начать заново</button>}
+		</div>
 	);
 }
