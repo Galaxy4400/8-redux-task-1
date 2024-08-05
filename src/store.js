@@ -7,11 +7,17 @@ export const store = createStore(appReducer);
 store.dispatch({type: 'init'});
 
 export const useStoreSubscribe = () => {
-	const [rerenderFlag, setRerenderFlag] = useState(false);
+	const [state, setState] = useState(store.getState());
 
 	useEffect(() => {
-		const rerender = () => setRerenderFlag(!rerenderFlag);
+		const handleStoreChange = () => {
+			setState(store.getState());
+		};
 
-		return store.subscribe(rerender);
-	}, [rerenderFlag]);
+		const unsubscribe = store.subscribe(handleStoreChange);
+
+		return () => unsubscribe();
+	}, []);
+
+	return state;
 };
