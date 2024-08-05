@@ -7,9 +7,7 @@ export const initialState = {
 	cells: [...Array(9)].fill(PLAYER.NOBODY),
 };
 
-export const appReducer = (state = initialState, action) => {
-	const { type, payload } = action;
-
+export const appReducer = (state = initialState, { type, payload }) => {
 	switch (type) {
 		case 'SET_CURRENT_PLAYER': {
 			return { ...state, currentPlayer: payload };
